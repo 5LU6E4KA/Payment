@@ -203,6 +203,10 @@ namespace Payment
                     sumRange.Font.Bold = worksheet.Cells[5][startRowIndex].Font.Bold = true;
                     startRowIndex++;
 
+                    worksheet.Cells[5][startRowIndex].Formula = $"=SUM(E4:E{startRowIndex - 2})";
+                    (worksheet.Cells[5][startRowIndex] as Excel.Range).NumberFormat = "0.00";
+                    worksheet.Range[worksheet.Cells[1][startRowIndex], worksheet.Cells[5][startRowIndex]].Merge();
+
                     Excel.Range rangeBorders = worksheet.Range[worksheet.Cells[1][1], worksheet.Cells[5][startRowIndex - 1]];
                     rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeBottom].LineStyle =
                         rangeBorders.Borders[Excel.XlBordersIndex.xlEdgeLeft].LineStyle =
